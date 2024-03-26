@@ -1,7 +1,7 @@
 import random
 import numpy as np
 
-POPULATION_SIZE = 50  # 염색체 집합의 크기
+POPULATION_SIZE = 10  # 염색체 집합의 크기
 SIZE = 4  # 유전자 개수
 ITERATIONS = 100  # 세대 수
 MUTATION_RATE = 0.2  # 돌연변이 확률
@@ -23,7 +23,7 @@ class Chromosome:
         total_distance = 0
         for i in range(len(self.genes) - 1):
             total_distance += distances[self.genes[i]][self.genes[i + 1]]
-
+        total_distance += distances[self.genes[len(self.genes) - 1]][self.genes[0]]
         return total_distance
 
 def select(population):
@@ -65,7 +65,7 @@ def mutate(p):
 
 if __name__ == "__main__":
     # 초기 염색체 집합
-    initial_genes = ["A", "B", "C", "D"]
+    initial_genes = ["D", "C", "B", "A"]
     population = [Chromosome(random.sample(initial_genes, len(initial_genes))) for _ in range(POPULATION_SIZE)]
 
     output = []
@@ -86,6 +86,6 @@ if __name__ == "__main__":
         output.append(population[0])
         print("{} 세대 : {} / 적합도 = {}".format(i + 1, population[0].genes, population[0].fitness))
 
-    best_chromosome = min(population, key=lambda x: x.fitness)
-    print("Best path: ", best_chromosome.genes)
-    print("Distance: ", best_chromosome.fitness)
+    output.sort(key=lambda x: x.fitness)
+    print("Best path: ", output[0].genes)
+    print("Distance: ", output[0].fitness)
