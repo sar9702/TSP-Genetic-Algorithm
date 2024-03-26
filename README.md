@@ -1,6 +1,8 @@
 # TSP-Genetic-Algorithm
 TSP with Genetic Algorithm
 
+<br>
+
 ## 유전 알고리즘
 ### 유전 알고리즘이란?
 생물체가 환경에 적응하면서 진화해가는 모습을 모방하여 최적해를 찾아내는 최적화 방법
